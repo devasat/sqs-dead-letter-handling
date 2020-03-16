@@ -94,6 +94,8 @@ func main() {
 			sendMessageBatchRequestEntries = append(sendMessageBatchRequestEntries, &sqs.SendMessageBatchRequestEntry{
 				Id:          &i,
 				MessageBody: element.Body})
+
+			log.Printf("RawSQSMessage: %v", *element.Body)
 		}
 
 		_, err = conn.SendMessageBatch(&sqs.SendMessageBatchInput{
