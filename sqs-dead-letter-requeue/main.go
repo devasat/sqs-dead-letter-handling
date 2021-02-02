@@ -55,7 +55,7 @@ func main() {
 		return
 	}
 
-	destinationQueueURL, err := conn.GetQueueUrl(getQueueUrlnput(&destinationQueueName, accountID))
+	// destinationQueueURL, err := conn.GetQueueUrl(getQueueUrlnput(&destinationQueueName, accountID))
 	if err != nil {
 		log.Fatal(err)
 		return
