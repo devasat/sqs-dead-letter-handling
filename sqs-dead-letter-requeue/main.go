@@ -85,44 +85,44 @@ func main() {
 			return
 		}
 
-		log.Printf("Moving %v message(s)...", numberOfMessages)
+		// log.Printf("Moving %v message(s)...", numberOfMessages)
 
-		var sendMessageBatchRequestEntries []*sqs.SendMessageBatchRequestEntry
+		// var sendMessageBatchRequestEntries []*sqs.SendMessageBatchRequestEntry
 		for index, element := range messages {
 			i := strconv.Itoa(index)
 
-			sendMessageBatchRequestEntries = append(sendMessageBatchRequestEntries, &sqs.SendMessageBatchRequestEntry{
-				Id:          &i,
-				MessageBody: element.Body})
+			// sendMessageBatchRequestEntries = append(sendMessageBatchRequestEntries, &sqs.SendMessageBatchRequestEntry{
+			// 	Id:          &i,
+			// 	MessageBody: element.Body})
 
 			log.Printf("RawSQSMessage: %v", *element.Body)
 		}
 
-		_, err = conn.SendMessageBatch(&sqs.SendMessageBatchInput{
-			Entries:  sendMessageBatchRequestEntries,
-			QueueUrl: destinationQueueURL.QueueUrl})
+		// _, err = conn.SendMessageBatch(&sqs.SendMessageBatchInput{
+		// 	Entries:  sendMessageBatchRequestEntries,
+		// 	QueueUrl: destinationQueueURL.QueueUrl})
 
-		if err != nil {
-			log.Fatal(err)
-			return
-		}
+		// if err != nil {
+		// 	log.Fatal(err)
+		// 	return
+		// }
 
-		var deleteMessageBatchRequestEntries []*sqs.DeleteMessageBatchRequestEntry
-		for index, element := range messages {
-			i := strconv.Itoa(index)
+		// var deleteMessageBatchRequestEntries []*sqs.DeleteMessageBatchRequestEntry
+		// for index, element := range messages {
+		// 	i := strconv.Itoa(index)
 
-			deleteMessageBatchRequestEntries = append(deleteMessageBatchRequestEntries, &sqs.DeleteMessageBatchRequestEntry{
-				Id:            &i,
-				ReceiptHandle: element.ReceiptHandle})
-		}
+		// 	deleteMessageBatchRequestEntries = append(deleteMessageBatchRequestEntries, &sqs.DeleteMessageBatchRequestEntry{
+		// 		Id:            &i,
+		// 		ReceiptHandle: element.ReceiptHandle})
+		// }
 
-		_, err = conn.DeleteMessageBatch(&sqs.DeleteMessageBatchInput{
-			Entries:  deleteMessageBatchRequestEntries,
-			QueueUrl: sourceQueueURL.QueueUrl})
+		// _, err = conn.DeleteMessageBatch(&sqs.DeleteMessageBatchInput{
+		// 	Entries:  deleteMessageBatchRequestEntries,
+		// 	QueueUrl: sourceQueueURL.QueueUrl})
 
-		if err != nil {
-			log.Fatal(err)
-			return
-		}
+		// if err != nil {
+		// 	log.Fatal(err)
+		// 	return
+		// }
 	}
 }
