@@ -3,7 +3,6 @@ package main // import "github.com/Jimdo/sqs-dead-letter-requeue"
 import (
 	"log"
 	"os"
-	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sqs"
@@ -89,7 +88,7 @@ func main() {
 
 		// var sendMessageBatchRequestEntries []*sqs.SendMessageBatchRequestEntry
 		for index, element := range messages {
-			i := strconv.Itoa(index)
+			// i := strconv.Itoa(index)
 
 			// sendMessageBatchRequestEntries = append(sendMessageBatchRequestEntries, &sqs.SendMessageBatchRequestEntry{
 			// 	Id:          &i,
